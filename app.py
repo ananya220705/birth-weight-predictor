@@ -16,12 +16,6 @@ app = Flask(__name__)
 def home() :
     return render_template("index.html")
 
-print("Current working directory:", os.getcwd())
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(BASE_DIR, "model", "model.pkl")
-
-with open(model_path, "rb") as f:
-    mymodel = pickle.load(f)
 
 def get_cleaned_data(form_data):
 
@@ -56,7 +50,7 @@ def get_prediction():
     baby_df = pd.DataFrame(baby_data_cleaned)
 
     #load machine learning trained model
-    with open("model/model.pkl",'rb') as obj:
+    with open("model.pkl",'rb') as obj:
         model = pickle.load(obj)
 
     # make prediction on user data
